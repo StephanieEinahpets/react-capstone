@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header, .footer {
+  background: #eee;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
