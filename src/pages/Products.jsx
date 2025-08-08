@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { fetchAllProducts, fetchCategories } from '../components/fetchData'
+import { useEffect, useState } from "react"
+import { fetchAllProducts, fetchCategories } from "../components/fetchData"
 
 export default function Products() {
   const [products, setProducts] = useState([])
@@ -26,24 +26,24 @@ export default function Products() {
 
   return (
     <div className="products">
-      <h1>Our Products</h1>
+      <h1>Our Wares</h1>
 
       <div className="filters">
         <h3>Filter by category:</h3>
-        {categories.map((cat) => (
-          <label key={cat}>
-            <input type="checkbox" value={cat} />
-            {cat}
+        {categories.map((category) => (
+          <label key={category}>
+            <input type="checkbox" value={category} />
+            {category}
           </label>
         ))}
       </div>
 
       <div className="product-grid">
-        {products.map((prod) => (
-          <div className="product-card" key={prod.id}>
-            <img src={prod.image} alt={prod.title} />
-            <h4>{prod.title}</h4>
-            <p>${prod.price}</p>
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <h4>{product.title}</h4>
+            <p>${product.price}</p>
             <button>Add to Cart</button>
           </div>
         ))}

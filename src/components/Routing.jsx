@@ -14,11 +14,11 @@ export default function Routing() {
       <Route path="/home" component={Home} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      <Route path="/product" component={Products} />
-      <Route path="/product-details" component={ProductDetails} />
+      <Route path="/products" component={Products} />
+      <Route path="/product/:id" component={ProductDetails} />
       <Route path="/cart" component={Cart} />
-      <Route path="/*" component={NotFound} />
       <Redirect exact from="/" to="/home" />
+      <Route component={NotFound} />
     </Switch>
   )
 }
