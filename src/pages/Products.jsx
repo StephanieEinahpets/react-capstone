@@ -1,53 +1,41 @@
-import { useEffect, useState } from "react"
-import { fetchAllProducts, fetchCategories } from "../components/fetchData"
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { fetchAllProducts } from "../components/fetchData"
+import { useCart } from "../components/CartContext"
 
 export default function Products() {
+  const { addToCart } = useCart()
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([fetchAllProducts(), fetchCategories()])
-      .then(([productsData, categoryData]) => {
-        setProducts(productsData)
-        setCategories(categoryData)
-      })
+    fetchAllProducts()
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error fetching products:", err))
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) {
-    return (
-      <div className="loading">
-        <i className="fas fa-spinner fa-spin"></i> Loading...
-      </div>
-    )
-  }
+  if (loading) return <div>Loading products...</div>
 
   return (
-    <div className="products">
-      <h1>Our Wares</h1>
-
-      <div className="filters">
-        <h3>Filter by category:</h3>
-        {categories.map((category) => (
-          <label key={category}>
-            <input type="checkbox" value={category} />
-            {category}
-          </label>
-        ))}
-      </div>
-
-      <div className="product-grid">
-        {products.map((product) => (
-          <div className="product-card" key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <h4>{product.title}</h4>
-            <p>${product.price}</p>
-            <button>Add to Cart</button>
-          </div>
-        ))}
-      </div>
+    <div className="products-list" style={{ display: "grid", gap: "1rem" }}>
+      {products.map((product) => (
+        <div key={product.id}>
+          <Link
+            to={`/product/${product.id}`}
+            style={{ textDecoration: "none", color: "inherit" }}>
+            <img
+              src={product.image}
+              alt={product.title}
+              style={{ height: "150px", objectFit: "contain" }}
+            />
+            <h3>{product.title}</h3>
+          </Link>
+          <p>Price: ${product.price.toFixed(2)}</p>
+          <button onClick={() => addToCart(product, 1)}>Add to Cart</button>
+        </div>
+      ))}
     </div>
   )
 }

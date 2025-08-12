@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import { fetchProductById } from "../components/fetchData"
+import { useCart } from "../components/CartContext"
 
-export default function ProductDetails({ onAddToCart }) {
+export default function ProductDetails() {
   const { id } = useParams()
+  const { addToCart } = useCart()
+
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
@@ -28,7 +31,6 @@ export default function ProductDetails({ onAddToCart }) {
   }, [id])
 
   if (loading) return <div>Loading product...</div>
-
   if (notFound) return <Redirect to="/not-found" />
 
   const description = product.description
@@ -36,12 +38,11 @@ export default function ProductDetails({ onAddToCart }) {
     description.length > 100 ? description.slice(0, 100) + "..." : description
 
   const increaseQuantity = () => setQuantity((q) => q + 1)
-
   const decreaseQuantity = () => setQuantity((q) => (q > 0 ? q - 1 : 0))
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      onAddToCart(product, quantity)
+      addToCart(product, quantity)
       setQuantity(0)
     }
   }
@@ -69,11 +70,16 @@ export default function ProductDetails({ onAddToCart }) {
       </p>
 
       <div className="quantity-controls" style={{ margin: "1rem 0" }}>
-        <button onClick={decreaseQuantity} disabled={quantity === 0}>
+        <button
+          onClick={decreaseQuantity}
+          disabled={quantity === 0}
+          style={{ cursor: quantity === 0 ? "not-allowed" : "pointer" }}>
           -
         </button>
         <span style={{ margin: "0 1rem" }}>{quantity}</span>
-        <button onClick={increaseQuantity}>+</button>
+        <button onClick={increaseQuantity} style={{ cursor: "pointer" }}>
+          +
+        </button>
       </div>
 
       <button onClick={handleAddToCart} disabled={quantity === 0}>

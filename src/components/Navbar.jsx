@@ -10,7 +10,7 @@ export default function Navbar() {
         Shop
       </NavLink>
       <NavLink className="nav-link" to="/cart">
-        Cart
+        <i className="fa-solid fa-cart-shopping"></i>
       </NavLink>
     </div>
   )

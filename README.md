@@ -7,6 +7,7 @@ src/
 │ └── Routing.jsx
 │ └── Footer.jsx
 │ └── Modal.jsx
+| └── CartContext.jsx
 │ └── fetchData.js
 ├── pages/
 │ └── Home.jsx

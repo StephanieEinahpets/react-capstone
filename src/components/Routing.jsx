@@ -14,8 +14,8 @@ export default function Routing() {
       <Route path="/home" component={Home} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      <Route path="/products" component={Products} />
       <Route path="/product/:id" component={ProductDetails} />
+      <Route path="/products" component={Products} />
       <Route path="/cart" component={Cart} />
       <Redirect exact from="/" to="/home" />
       <Route component={NotFound} />
