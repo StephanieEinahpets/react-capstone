@@ -1,9 +1,5 @@
+import "../styles/pages/404.scss"
+
 export default function NotFound() {
-  return (
-    <div>
-      <h1>404</h1>
-      <h1>There's nothing here</h1>
-      <button>Please Take Me Home</button>
-    </div>
-  )
+  return <div className="not-found-container"></div>
 }

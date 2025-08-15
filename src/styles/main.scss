@@ -1,6 +1,13 @@
 body {
   margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: "Raleway", "Cormorant";
+  background-color: #c7d7c5;
+}
+
+#root > .app-content {
+  flex: 1;
 }
 
 a {
@@ -8,16 +15,28 @@ a {
   color: inherit;
 }
 
-.header,
-.footer {
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: #eee;
 }
 
 .footer {
-  position: sticky;
-  bottom: 0;
+  background: #eee;
   text-align: center;
   font-size: 0.9rem;
+  padding: 1rem;
 }
 
 button {
@@ -28,5 +47,5 @@ button {
 
 button:hover {
   cursor: pointer;
-  transition: 3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
