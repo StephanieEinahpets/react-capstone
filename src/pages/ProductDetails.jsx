@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import { fetchProductById } from "../components/fetchData"
 import { useCart } from "../components/CartContext"
+import "../styles/pages/productDetails.scss"
 
 export default function ProductDetails() {
   const { id } = useParams()
@@ -19,7 +20,7 @@ export default function ProductDetails() {
       .then((data) => {
         setProduct(data)
         setNotFound(false)
-        setQuantity(0)
+        setQuantity(1)
         setShowFullDesc(false)
       })
       .catch(() => {
@@ -56,33 +57,33 @@ export default function ProductDetails() {
       <img src={product.image} alt={product.title} />
 
       <p>
+        {product.rating?.rate}★ ({product.rating?.count} reviews)
+      </p>
+      <br></br>
+      <p>
         {showFullDesc ? description : truncatedDesc}{" "}
         {description.length > 100 && (
           <button onClick={() => setShowFullDesc(!showFullDesc)}>
-            {showFullDesc ? "show less" : "show more..."}
+            {showFullDesc ? "...show less" : "show more..."}
           </button>
         )}
       </p>
 
-      <p>Price: ${product.price.toFixed(2)}</p>
-      <p>
-        Rating: {product.rating?.rate} ({product.rating?.count} reviews)
-      </p>
+      <br></br>
+      <p className="price">${product.price.toFixed(2)}</p>
 
-      <div className="quantity-controls" style={{ margin: "1rem 0" }}>
-        <button
-          onClick={decreaseQuantity}
-          disabled={quantity === 0}
-          style={{ cursor: quantity === 0 ? "not-allowed" : "pointer" }}>
+      <div className="quantity-controls">
+        <button onClick={decreaseQuantity} disabled={quantity === 0}>
           -
         </button>
-        <span style={{ margin: "0 1rem" }}>{quantity}</span>
-        <button onClick={increaseQuantity} style={{ cursor: "pointer" }}>
-          +
-        </button>
+        <span>{quantity}</span>
+        <button onClick={increaseQuantity}>+</button>
       </div>
 
-      <button onClick={handleAddToCart} disabled={quantity === 0}>
+      <button
+        onClick={handleAddToCart}
+        disabled={quantity === 0}
+        className="add-to-cart-btn">
         Add to Cart
       </button>
     </div>

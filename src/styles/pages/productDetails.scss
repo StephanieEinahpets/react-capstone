@@ -1,0 +1,113 @@
+.product-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-image: url(../../assets/abstract-bg.avif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #0f5159;
+  }
+
+  em {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  img {
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: contain;
+    margin: 1.5rem auto;
+    display: block;
+    border-radius: 0.5rem;
+    background: #fff;
+    padding: 0.5rem;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: #0f5159;
+    line-height: 1.4;
+
+    button {
+      background: none;
+      border: none;
+      color: #0cb5b2;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 0.3rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+
+    button {
+      background: #a785a9;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover:not(:disabled) {
+        background: #a785a9;
+      }
+
+      &:disabled {
+        background: #c7b1c8;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0 1.2rem;
+    }
+  }
+
+  .add-to-cart-btn {
+    background: #c06187;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #d27097;
+    }
+
+    &:disabled {
+      background: #ba9ca8;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.5em;
+}
